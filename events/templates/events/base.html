@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {% comment %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+    {% endcomment %}
+  </head>
+  <body>
+    <nav
+      class="p-5 bg-white shadow mt-3 md:flex md:items-center md:justify-between"
+    >
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-3xl font-bold hover:text-red-500">ABC</span>
+          <p class="text-1xl font-semibold">EVENT MANAGEMENT</p>
+        </div>
+        <!-- Mobile Menu Icon -->
+        <div class="md:hidden">
+          <button
+            id="menu-btn"
+            class="text-1xl cursor-pointer hover:text-green-500"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menu Items -->
+      <ul
+        id="menu"
+        class="md:flex md:items-center gap-5 font-medium hidden bg-white w-full md:w-auto md:py-0 py-4 md:pl-0 pl-7"
+      >
+        <li class="hover:text-green-500 my-4 md:my-0">
+          <a href="{% url 'home' %}?type=home">HOME</a>
+        </li>
+        <li class="hover:text-green-500 my-4 md:my-0">
+          <a href="{% url 'add_event' %}?type=add-event">ADD EVENT</a>
+        </li>
+        <li class="hover:text-green-500 my-4 md:my-0">
+          <a href="{% url 'add_category' %}?type=add-category">ADD CATEGORY</a>
+        </li>
+        <li class="hover:text-green-500 my-4 md:my-0">
+          <a href="{% url 'add_participant' %}?type=add-Participant"
+            >ADD PARTICIPANTS</a
+          >
+        </li>
+        <li class="hover:text-green-500 my-4 md:my-0">CONTACT</li>
+        <li class="hover:text-green-500">
+          <a href="{% url 'dashboard_o' %}?type=dashboard">DASHBOARD</a>
+        </li>
+      </ul>
+    </nav>
+
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const menu = document.getElementById("menu");
+
+      menuBtn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    </script>
+
+    <main>{% block home-content %}{% endblock home-content %}</main>
+  </body>
+</html>
